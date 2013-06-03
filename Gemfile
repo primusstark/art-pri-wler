@@ -2,12 +2,11 @@ source 'http://gems.vc.datys.cu'
 
 gem 'rails', '3.2.13'
 
-# App server
-gem 'puma', '~> 2.0.1'
-
-
 # Database
 gem 'sqlite3'
+git 'https://github.com/matthuhiggins/foreigner.git' do
+  gem 'foreigner'
+end
 
 
 # Authentication
@@ -42,6 +41,16 @@ gem 'colored'
 # Log rotate
 gem 'lograge'
 
+# Form helpers
+gem 'simple_form'
+
+
+# UI components
+gem "chosen-rails", "0.9.11.2"
+
+# HAML
+gem 'haml-rails'
+
 ### GROUPS ###
 group :assets do
   # CSS related
@@ -62,16 +71,23 @@ end
 
 group :test do
   # Cucumber tests
-  gem "cucumber-rails", ">= 1.3.1", :require => false
+  gem 'cucumber'
+  gem "cucumber-rails", :require => false
   gem "capybara", ">= 2.0.3"
   gem "launchy", ">= 2.2.0"
   gem "database_cleaner", ">= 1.0.0.RC1"
+  gem "haml", "4.0.0"
 
   # Test coverage
   gem "simplecov", :require => false
 
   # AR validation testing
   gem "shoulda-matchers", "2.1.0"
+  # to understand rspec output in ci environment
+  gem 'ci_reporter'
+
+  # Metrics
+  gem "brakeman", ">= 1.9.3"
 end
 
 group :development do
@@ -93,26 +109,32 @@ group :development do
   gem 'libnotify' if /linux/ =~ RUBY_PLATFORM
   gem 'rb-notifu', :platforms => [:mswin, :mingw]
   gem 'win32console', :platforms => [:mswin, :mingw]
-
+  gem 'win32-process', :platforms => [:mswin, :mingw]
+  gem 'wdm', :platforms => [:mswin, :mingw]
+  gem 'thin'
   # Assets
   gem "quiet_assets", ">= 1.0.2"
 
   # Better error display
   gem "better_errors", ">= 0.7.2"
-  gem "binding_of_caller", ">= 0.7.1", :platforms => [:mri_19, :rbx]
+  gem "binding_of_caller", ">= 0.7.1", :platforms => [:ruby]
 
-  # HAML
-  gem 'haml-rails'
-
-  # Active record bottle neck tracker
+  # Active redirect_to :controller => ""ord bottle neck tracker
   gem 'bullet'
+
+  # Db Index discovery
+  gem 'lol_dba'
 
   # Development tweaks
   gem 'rails-dev-tweaks', '~> 0.6.1'
 end
 
-### GROUPS Mixed ###
+group :production do
+  # App server
+  gem 'puma', '~> 2.0.1', :platforms => [:ruby]
+end
 
+### GROUPS Mixed ###
 group :test, :development do
   gem 'konacha'
   
@@ -128,10 +150,3 @@ group :test, :development do
   # Configuration
   gem 'dotenv-rails', :groups => [:development, :test]
 end
-
-
-# UI components
-gem "chosen-rails", "0.9.11.2"
-
-
-
