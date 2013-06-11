@@ -4,9 +4,9 @@ gem 'rails', '3.2.13'
 
 # Database
 gem 'sqlite3'
-git 'https://github.com/matthuhiggins/foreigner.git' do
-  gem 'foreigner'
-end
+#git 'https://github.com/matthuhiggins/foreigner.git' do
+#  gem 'foreigner'
+#end
 
 
 # Authentication
@@ -50,6 +50,9 @@ gem "chosen-rails", "0.9.11.2"
 
 # HAML
 gem 'haml-rails'
+
+# Database seeds
+gem 'seed-fu', '~> 2.2.0'
 
 ### GROUPS ###
 group :assets do
@@ -131,7 +134,7 @@ end
 
 group :production do
   # App server
-  gem 'puma', '~> 2.0.1', :platforms => [:ruby]
+  #gem 'puma', '~> 2.0.1', :platforms => [:ruby]
 end
 
 ### GROUPS Mixed ###
