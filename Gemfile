@@ -2,154 +2,158 @@ source 'http://gems.vc.datys.cu'
 
 gem 'rails', '3.2.13'
 
-# Database
-gem 'sqlite3'
-#git 'https://github.com/matthuhiggins/foreigner.git' do
-#  gem 'foreigner'
-#end
+gem 'active_presenter', '3.2.2'
+gem 'responders', '0.9.3'
 
+
+# Database
+gem 'sqlite3', '1.3.8'
+
+# json template api
+gem 'rabl', '0.8.6'
+#gem 'facets', '2.9.3'
+
+# I18n database fields models
+gem 'globalize3', '0.3.0'
 
 # Authentication
-gem "devise", ">= 2.2.3"
-
-# AR enumerations
-gem 'enumerize'
+gem 'devise', '3.1.0'
 
 # Authorization
-gem 'six'
+gem 'six', '0.2.0'
+
+gem 'enumerize', '0.7.0' # AR enumerations
 
 # Background jobs processing
-gem 'slim'
-gem 'sinatra', :require => nil
-gem 'sidekiq', '2.8.0'
+##gem 'slim', '1.3.6'
+##gem 'sinatra', '1.4.3', :require => nil
+##gem 'sidekiq', '2.12.4'
 
 # Application launching
-gem 'foreman', '0.61.0'
+gem 'foreman', :ref => 'http://gitlab.vc.datys.cu//external-apis/foreman.git' # (version 0.63.0)
 
-# Scheduling
-gem 'whenever', :require => false
+##gem 'whenever', '0.8.2', :require => false # Scheduling
 
-# Settings/Configuration
-gem 'settingslogic'
+##gem 'settingslogic', '2.0.9' # Settings/Configuration
 
-# Format dates
-gem 'stamp'
+##gem 'stamp', '0.5.0' # Format dates
 
-# Colored output to console
-gem 'colored'
+gem 'airbrake', '3.1.14' # Error notification
 
-# Log rotate
-gem 'lograge'
+gem 'lograge', '0.2.0' # Log rotate
 
-# Form helpers
-gem 'simple_form'
-
+gem 'simple_form', '2.1.0' # Form helpers
 
 # UI components
-gem "chosen-rails", "0.9.11.2"
+gem 'chosen-rails', '1.0.0'
+gem 'pnotify-rails', '1.2.2'
 
-# HAML
-gem 'haml-rails'
+# Views
+gem 'haml-rails', '0.4'
+gem 'haml', '4.0.3'
 
-# Database seeds
-gem 'seed-fu', '~> 2.2.0'
+gem 'pjax_rails', '0.3.4'
+gem 'kaminari', '0.14.1'
 
-### GROUPS ###
+
+##gem 'seed-fu', '2.2.0'  # Database seeds
+
+gem 'factory_girl_rails', '4.2.1'
+
+# Active Record Nesting
+gem 'awesome_nested_set', '2.1.6'
+gem 'the_sortable_tree', '2.4.0'
+
 group :assets do
   # CSS related
-  gem 'sass-rails', '~> 3.2.3'
-  gem 'compass_twitter_bootstrap', :path => 'lib/compass-twitter-bootstrap'
+  gem 'sass-rails', '3.2.6'
+  gem 'compass_twitter_bootstrap', '2.3.1'
   gem 'compass-rails' , '1.0.3'
 
-
   # Javascript related
-  gem 'coffee-rails', '~> 3.2.1'
-  gem "jquery-rails"
-  gem 'jquery-ui-rails', '4.0.2'
+  gem 'coffee-rails', '3.2.2'
+  gem 'jquery-rails', '3.0.4'
+  gem 'jquery-ui-rails', '4.0.4'
+
+  # edit inline
+  gem 'best_in_place'
 
   # Compression
-  gem 'uglifier', '>= 1.0.3'
+  gem 'uglifier', '2.1.1'
 end
 
-
 group :test do
-  # Cucumber tests
-  gem 'cucumber'
-  gem "cucumber-rails", :require => false
-  gem "capybara", ">= 2.0.3"
-  gem "launchy", ">= 2.2.0"
-  gem "database_cleaner", ">= 1.0.0.RC1"
-  gem "haml", "4.0.0"
+  gem 'cucumber', '1.3.7'
+  gem 'cucumber-rails', '1.4.0', :require => false
+  gem 'capybara', '2.1.0'
+  gem 'launchy', '2.3.0'
+  gem 'database_cleaner', '1.1.1'
 
-  # Test coverage
-  gem "simplecov", :require => false
+  gem 'konacha', '3.0.0' # Javascript test with mocha framework
 
-  # AR validation testing
-  gem "shoulda-matchers", "2.1.0"
-  # to understand rspec output in ci environment
-  gem 'ci_reporter'
+  gem 'simplecov', '0.7.1', :require => false  # Test coverage
+
+  gem 'simplecov-rcov', '0.2.3', :require => false  # Test coverage
+
+
+  gem 'shoulda-matchers', '2.2.0' # AR validation testing
+
+  gem 'enumerize-matchers', '0.0.1' # Enumerize validation
+
+  gem 'ci_reporter', '1.9.0' # to understand rspec output in ci environment
 
   # Metrics
-  gem "brakeman", ">= 1.9.3"
+  gem 'brakeman', '2.1.1'
+  gem 'metric_fu', '4.4.1'
+
+  gem 'capybara-webkit' if /linux/ =~ RUBY_PLATFORM
 end
 
 group :development do
   # Preloading environment
-  gem "spork"
-  gem 'rails_best_practices'
-  gem 'guard'
-  gem 'guard-rails_best_practices'
-  gem "guard-spork"
-  gem "guard-bundler", ">= 1.0.0"
-  gem "guard-cucumber", ">= 1.4.0"
-  gem 'guard-migrate'
-  gem "guard-rails", ">= 0.4.0"
-  gem "guard-rspec", ">= 2.5.2"
-  gem "rb-inotify", ">= 0.9.0", :require => false
-  gem "rb-fsevent", ">= 0.9.3", :require => false
-  gem "rb-fchange", ">= 0.0.6", :require => false
-  gem 'wdm', :platforms => [:mswin, :mingw], :require => false
+  gem 'spork', '0.9.2'
+  gem 'rb-inotify', '0.9.1', :require => false
+  gem 'rb-fsevent', '0.9.3', :require => false
+  gem 'rb-fchange', '0.0.6', :require => false
+  gem 'wdm', '0.1.0', :platforms => [:mswin, :mingw], :require => false
   gem 'libnotify' if /linux/ =~ RUBY_PLATFORM
-  gem 'rb-notifu', :platforms => [:mswin, :mingw]
-  gem 'win32console', :platforms => [:mswin, :mingw]
-  gem 'win32-process', :platforms => [:mswin, :mingw]
-  gem 'wdm', :platforms => [:mswin, :mingw]
-  gem 'thin'
-  # Assets
-  gem "quiet_assets", ">= 1.0.2"
+  gem 'rb-notifu', '0.0.4', :platforms => [:mswin, :mingw]
+  gem 'win32console', '1.3.2', :platforms => [:mswin, :mingw]
+  gem 'win32-process', '0.7.2', :platforms => [:mswin, :mingw]
 
   # Better error display
-  gem "better_errors", ">= 0.7.2"
-  gem "binding_of_caller", ">= 0.7.1", :platforms => [:ruby]
+  gem 'better_errors', '1.0.1'
+  gem 'binding_of_caller', '0.7.1', :platforms => [:ruby]
 
-  # Active redirect_to :controller => ""ord bottle neck tracker
-  gem 'bullet'
+  gem 'quiet_assets', '1.0.2' #Remove assets logs
 
-  # Db Index discovery
-  gem 'lol_dba'
+  # Code quality
+  gem 'bullet', '4.6.0' #Detect N+1 query and eager loading
+  gem 'rails_best_practices', '1.14.3'
+  gem 'lol_dba', '1.6.0' #Db Index discovery
 
-  # Development tweaks
-  gem 'rails-dev-tweaks', '~> 0.6.1'
+   # misc
+  gem 'rails-dev-tweaks', '0.6.1'  #tweaks to improve your Rails (3.1+) development experience.
+  gem 'colored', '1.2'  # Colored output to console
+
+  gem 'annotate', '2.5.0'
 end
 
 group :production do
-  # App server
-  #gem 'puma', '~> 2.0.1', :platforms => [:ruby]
+  gem 'puma', '2.5.1', :platforms => [:ruby] # App server
 end
 
-### GROUPS Mixed ###
 group :test, :development do
-  gem 'konacha'
-  
-  # Rspec
-  gem "rspec-rails", ">= 2.12.2"
+  gem 'rspec-rails', '2.13.0'
 
-  # Testing factory
-  gem "factory_girl_rails", ">= 4.2.0"
+  gem 'dotenv-rails', '0.9.0' # Configuration
 
-  # Error notification
-  gem "airbrake", "3.1.12", :group => [:development, :test]
-
-  # Configuration
-  gem 'dotenv-rails', :groups => [:development, :test]
+  # RSpec matchers and Cucumber steps for testing JSON content
+  gem 'json_spec', '1.1.1'
 end
+
+gem 'gon', '4.1.0'
+
+gem 'amcharts-rails', :ref => 'http://gitlab.vc.datys.cu//external-apis/amcharts-rails.git'
+
+gem 'beesor-jquery-render-rails', :git => 'git@gitlab.vc.datys.cu:apis/beesor-jquery-render-rails.git'
